@@ -23,10 +23,9 @@ public class WalletService {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    @KafkaListener(topics = {"user-created"}, groupId = "jbdl123")
+    @KafkaListener(topics = {"user_created"}, groupId = "jbdl123")
     public void createWallet(String message) { // message is the user data in JSON format
 try {
-
     // here we are parsing the JSON message to a JSONObject
     JSONObject userJsonObject = (JSONObject) new JSONParser().parse(message);
 

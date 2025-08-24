@@ -32,6 +32,7 @@ return  new ResponseEntity<>(msg,HttpStatus.OK);
     // WalletController.java (top-up feature)
     @PostMapping("/topup")
     public ResponseEntity<String> topUpWallet(@RequestBody TopUpRequest request) {
+        // Validate the request (e.g., check if userId and amount are valid)
         try {
             String transactionId = walletService.topUpWallet(request.getUserId(), request.getAmount());
             return ResponseEntity.ok("Wallet top-up successful. Transaction ID: " + transactionId);

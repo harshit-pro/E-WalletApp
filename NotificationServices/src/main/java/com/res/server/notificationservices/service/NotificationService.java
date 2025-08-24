@@ -45,21 +45,19 @@ public class NotificationService {
             javaMailSender.send(simpleMailMessage);
         }
     }
-
-    @KafkaListener(topics = {"otp-verification"}, groupId = "jbdl123")
+    @KafkaListener(topics = {"send-otp"}, groupId = "jbdl123")
     public void sendOtpVerification(String msg) throws ParseException {
         JSONObject json = (JSONObject) new JSONParser().parse(msg);
         String email = (String) json.get("email");
         String otp = (String) json.get("otp");
-
+        System.out.println("Sending OTP to " + email + " with OTP: " + otp);
         simpleMailMessage.setTo(email);
         simpleMailMessage.setSubject("OTP for Wallet Verification");
-        simpleMailMessage.setFrom("harshitesting07@gmail.com");
+        simpleMailMessage.setFrom("harshitmishrajmains07@gmail.com");
         simpleMailMessage.setText("Your OTP is: " + otp + ". It is valid for 5 minutes.");
-
         javaMailSender.send(simpleMailMessage);
+        System.out.println("OTP sent to " + email);
     }
-
     private String getSenderMessage(String transactionStatus, Long amount, String transactionId) {
         if (transactionStatus.equals("FAILURE")) {
             return "Hi! Your transaction of amount ₹" + amount + ", ID = " + transactionId + " has Failed.";
@@ -67,7 +65,6 @@ public class NotificationService {
             return "Hi! Your account has been debited with ₹" + amount + ", transaction ID = " + transactionId + ".";
         }
     }
-
     private String getReceiverMessage(String transactionStatus, Long amount, String senderEmail) {
         if (transactionStatus.equals("SUCCESSFUL")) {
             return "Hi! Your account has been credited with ₹" + amount + " from user " + senderEmail + ".";

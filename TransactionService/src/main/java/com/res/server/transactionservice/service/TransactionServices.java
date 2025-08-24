@@ -77,6 +77,7 @@ public class TransactionServices {
             transactionStatus = TransactionStatus.FAILED;
             // Log the error
         }
+
         // publish an event to the message broker (like Kafka) to notify other services
         // that a transaction has been initiated
 
@@ -88,7 +89,7 @@ public class TransactionServices {
 
         // TODO - Find email addresses using sender and reciever id / mobile number
         String senderEmail = "r954025@gmail.com";
-        String receiverEmail = "abhimishranav@gmail.com";
+        String receiverEmail = "harshitmishrajmains07@gmail.com";
         // here we sending the notification to the user about the transaction status
         // Todo:Send a notification using notification-service
         JSONObject jsonObject = new JSONObject();
@@ -99,12 +100,8 @@ public class TransactionServices {
         jsonObject.put("receiverEmail", receiverEmail);
 
         this.kafkaTemplate.send("transaction_completed", objectMapper.writeValueAsString(jsonObject));
-
-
         return transaction.getExternalTransactionId();
     }
-
-
     public Page<TransactionResponseDTO> getTransactionHistory(int page, int size, String senderId, String receiverId, String status, LocalDate fromDate, LocalDate toDate) {
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
@@ -130,7 +127,7 @@ public class TransactionServices {
                         .createdAt(txn.getCreatedAt())
                         .build());
     }
-    @KafkaListener(topics = {"topup_transaction_created"}, groupId = "jbdl123")
+    @KafkaListener(topics = {"transaction_completed"}, groupId = "jbdl123")
     public void createTopUpTransaction(String message) {
         try {
             JSONObject json = null;

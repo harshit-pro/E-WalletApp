@@ -19,7 +19,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UserService implements UserDetailsService {
+
     private RestTemplate restTemplate = new RestTemplate();
+
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -39,7 +42,7 @@ public class UserService implements UserDetailsService {
         if(username.equals(transactionUser)) {
             return User.builder()
                     .username(transactionUser)
-                    .password(passwordEncoder().encode(password)) // Encoding the raw password
+                    .password(passwordEncoder().encode(password))
                     .authorities("svc")
                     .build();
 
