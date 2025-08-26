@@ -21,7 +21,6 @@ This application is designed using a microservices architecture, promoting scala
 -----
 <img width="1102" height="633" alt="image" src="https://github.com/user-attachments/assets/15ab4a1c-5bb8-4543-8eae-3b5a09cad8ad" />
 <img width="717" height="437" alt="image" src="https://github.com/user-attachments/assets/eb45d3fc-bbb5-4a8c-bfc6-6fad72c49fe6" />
-## Database Design
 <img width="700" height="525" alt="image" src="https://github.com/user-attachments/assets/ba741aac-3296-4194-8cf4-a9db7c5db2fb" />
 
 
