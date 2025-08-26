@@ -19,6 +19,8 @@ Welcome to the E-Wallet Application, a secure, scalable, and user-friendly digit
 This application is designed using a microservices architecture, promoting scalability, flexibility, and maintainability. Each service is an independent component with a specific business capability, communicating with others through a combination of REST APIs and an event-driven approach using Apache Kafka.
 
 -----
+<img width="1102" height="633" alt="image" src="https://github.com/user-attachments/assets/15ab4a1c-5bb8-4543-8eae-3b5a09cad8ad" />
+
 
 ## 🚀 Microservices
 
