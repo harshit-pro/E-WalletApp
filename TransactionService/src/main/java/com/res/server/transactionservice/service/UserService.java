@@ -61,7 +61,6 @@ public class UserService implements UserDetailsService {
                 (url, HttpMethod.GET,
                         request,
                         JSONObject.class);
-        System.out.println("Response from user service: " + response.getBody());
         // here, I am using exchange method of RestTemplate to call the user-service
         // exchange method is used to exchange the request and response with the user service
         JSONObject responseBody = null; // ho sakta it might be null
@@ -72,7 +71,6 @@ public class UserService implements UserDetailsService {
         }else {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
-        System.out.println("password: " + responseBody.get("password"));
         return User.builder().password((String) responseBody.get("password"))
                 .username((String) responseBody.get("username"))
                 .authorities((String) responseBody.get("authorities"))

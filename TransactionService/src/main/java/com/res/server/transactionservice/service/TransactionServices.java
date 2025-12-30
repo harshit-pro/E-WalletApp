@@ -65,7 +65,6 @@ public class TransactionServices {
                     transaction.getReceiverId(),
                     transactionCreateRequest.getAmount()
             );
-
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 transactionStatus = TransactionStatus.SUCCESS;
             } else {

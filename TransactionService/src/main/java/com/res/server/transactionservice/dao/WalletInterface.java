@@ -16,10 +16,8 @@ public interface WalletInterface {
     // For example, you might have methods like:
     // @GetMapping("/wallet/{id}")
     // Wallet getWalletById(@PathVariable("id") String id);
-
     // @PostMapping("/wallet/update")
     // void updateWallet(@RequestBody Wallet wallet);
-
     // Add more methods as needed based on the Wallet Service API
     @PostMapping("/wallet/update")
     public ResponseEntity<String> updateWallet(@RequestParam String senderId,

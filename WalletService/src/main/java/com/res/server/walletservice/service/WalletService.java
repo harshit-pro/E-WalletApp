@@ -39,7 +39,6 @@ try {
             .balance(initialBalance) // Initial balance is set to 0
             .build();
     walletRepository.save(wallet);
-
 }catch (ParseException e){
     throw  new RuntimeException("Error parsing JSON message: " + e.getMessage());
 }

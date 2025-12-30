@@ -21,7 +21,6 @@ import java.time.LocalDate;
 public class TransactionController {
     private final TransactionServices transactionServices;
 
-
     @PostMapping("/initiate")
     private String initiateTransaction(@RequestBody @Valid TransactionCreateRequest transactionCreateRequest) throws JsonProcessingException {
         //transaction tabhi ho payega  jab user pehle se logged in ho aur uska wallet balance sufficient ho
@@ -30,11 +29,9 @@ public class TransactionController {
         // aur receiverId ko bhi set kar do jo ki receiver ki mobile number se aayega
         // i get the user details from current logged in user from security context holder
         User sender = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("Sender Username: " + sender.getUsername());
-        System.out.println("Receiver ID: " + transactionCreateRequest.getReceiverId());
+
         return transactionServices.transact(transactionCreateRequest, sender.getUsername());
     }
-
         @GetMapping("/history")
         public Page<TransactionResponseDTO> getHistory(
         @RequestParam(defaultValue = "0") int page,

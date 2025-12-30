@@ -7,7 +7,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
 @Service
 public class NotificationService {
 
@@ -16,7 +15,6 @@ public class NotificationService {
 
     @Autowired
     JavaMailSender javaMailSender;
-
     @KafkaListener(topics = {"transaction_completed"}, groupId = "jbdl123")
     public void notify(String msg) throws ParseException {
         JSONObject jsonObject = (JSONObject) new JSONParser().parse(msg);

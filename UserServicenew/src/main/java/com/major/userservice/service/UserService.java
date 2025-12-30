@@ -141,7 +141,6 @@ public class UserService implements UserDetailsService {
         // Clean up Redis
         redisTemplate.delete(REG_KEY_PREFIX + username);
         redisTemplate.delete(OTP_KEY_PREFIX + username);
-        System.out.println("User registration completed successfully for: " + username);
         return true;
     }
     public User getById(Integer userId) {

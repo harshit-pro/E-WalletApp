@@ -18,13 +18,19 @@ public class KafkaConfig {
     @Bean
     ProducerFactory getProducerFactory() {
         Properties properties = new Properties();
+
         // TODO - move values to application.properties
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        // above line specifies the Kafka broker address MEANS where the Kafka server is running
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        // above line specifies the serializer class for the key of the message converting data to byte stream why
+        // because Kafka only understands byte stream
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
         return new DefaultKafkaProducerFactory(properties);
     }
+    //ProduceFactory is used to create Kafka producers
+    //ConsumerFactory is used to create Kafka consumers
 
     @Bean
     ConsumerFactory getConsumerFactory() {
@@ -38,6 +44,10 @@ public class KafkaConfig {
     }
 
     @Bean
+    // why kafkatemplate is needed?
+    // KafkaTemplate is used to send messages to Kafka topics
+    // it provides high level abstraction for sending messages
+    // it handles the serialization and partitioning of messages
     KafkaTemplate<String, String> getKafkaTemplate() {
         return new KafkaTemplate<>(getProducerFactory());
     }
